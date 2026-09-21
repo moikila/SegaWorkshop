@@ -1,0 +1,765 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Interactive plan for a participatory Mauritian sega workshop on 14 November 2026.">
+  <title>Sega Workshop Plan</title>
+  <style>
+    :root {
+      --ink: #17252b;
+      --muted: #617279;
+      --paper: #fffdf8;
+      --canvas: #f3eee4;
+      --teal: #145b63;
+      --teal-dark: #0b4148;
+      --ocean: #2b7d8a;
+      --coral: #d9664c;
+      --gold: #d6a738;
+      --line: #d8ddd8;
+      --soft-teal: #e7f2f1;
+      --soft-gold: #fbf2d9;
+      --soft-coral: #fbeae5;
+      --shadow: 0 16px 45px rgba(22, 50, 55, 0.12);
+      --radius: 18px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: var(--canvas);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; min-width: 320px; background: var(--canvas); }
+    button, a { font: inherit; }
+    a { color: var(--teal); text-underline-offset: 3px; }
+    a:hover { color: var(--coral); }
+
+    .masthead {
+      position: relative;
+      overflow: hidden;
+      color: white;
+      background:
+        radial-gradient(circle at 87% 28%, rgba(214, 167, 56, 0.95) 0 7%, transparent 7.2%),
+        radial-gradient(circle at 91% 60%, rgba(217, 102, 76, 0.88) 0 13%, transparent 13.2%),
+        linear-gradient(125deg, var(--teal-dark), var(--teal) 58%, var(--ocean));
+    }
+
+    .masthead::after {
+      content: "";
+      position: absolute;
+      width: 330px;
+      height: 330px;
+      right: -160px;
+      bottom: -210px;
+      border: 46px solid rgba(255,255,255,0.11);
+      border-radius: 50%;
+    }
+
+    .hero {
+      position: relative;
+      z-index: 1;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 50px 28px 38px;
+    }
+
+    .eyebrow {
+      margin: 0 0 10px;
+      color: #f8d880;
+      font-weight: 750;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      font-size: .78rem;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 800px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.4rem, 6vw, 4.8rem);
+      line-height: .98;
+      letter-spacing: -.045em;
+    }
+
+    .subtitle {
+      max-width: 720px;
+      margin: 20px 0 0;
+      font-size: clamp(1rem, 2vw, 1.28rem);
+      line-height: 1.55;
+      color: rgba(255,255,255,.88);
+    }
+
+    .facts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 25px;
+    }
+
+    .fact {
+      padding: 8px 12px;
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: 999px;
+      background: rgba(255,255,255,.1);
+      backdrop-filter: blur(4px);
+      font-size: .9rem;
+    }
+
+    .tab-shell {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255, 253, 248, .96);
+      border-bottom: 1px solid var(--line);
+      box-shadow: 0 5px 16px rgba(22, 50, 55, .08);
+      backdrop-filter: blur(14px);
+    }
+
+    .tab-row {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 10px 22px;
+      overflow-x: auto;
+      scrollbar-width: thin;
+    }
+
+    [role="tab"] {
+      flex: 0 0 auto;
+      border: 0;
+      border-radius: 999px;
+      padding: 9px 13px;
+      color: #35545a;
+      background: transparent;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: .86rem;
+      transition: color .16s ease, background .16s ease, transform .16s ease;
+    }
+
+    [role="tab"]:hover { background: var(--soft-teal); }
+    [role="tab"]:active { transform: translateY(1px); }
+    [role="tab"][aria-selected="true"] { color: white; background: var(--teal); }
+    [role="tab"]:focus-visible, button:focus-visible, a:focus-visible {
+      outline: 3px solid var(--gold);
+      outline-offset: 2px;
+    }
+
+    .print-button {
+      flex: 0 0 auto;
+      margin-left: auto;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 8px 11px;
+      background: white;
+      color: var(--teal-dark);
+      cursor: pointer;
+      font-weight: 750;
+      font-size: .82rem;
+    }
+
+    main { max-width: 1180px; margin: 0 auto; padding: 28px 24px 60px; }
+
+    [role="tabpanel"] {
+      min-height: 62vh;
+      padding: clamp(24px, 5vw, 48px);
+      background: var(--paper);
+      border: 1px solid rgba(20, 91, 99, .12);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      animation: reveal .22s ease-out;
+    }
+
+    [role="tabpanel"][hidden] { display: none; }
+    @keyframes reveal { from { opacity: 0; transform: translateY(7px); } to { opacity: 1; transform: none; } }
+
+    .page-kicker {
+      color: var(--coral);
+      font-size: .76rem;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      margin: 0 0 8px;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--teal-dark);
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      line-height: 1.06;
+      letter-spacing: -.025em;
+    }
+
+    h3 {
+      margin: 32px 0 10px;
+      color: var(--teal-dark);
+      font-size: 1.25rem;
+      line-height: 1.2;
+    }
+
+    h4 { margin: 23px 0 7px; color: var(--teal); font-size: 1rem; }
+    p, li { line-height: 1.62; }
+    p { margin: 0 0 14px; }
+    ul, ol { margin: 10px 0 18px; padding-left: 1.35rem; }
+    li + li { margin-top: 7px; }
+    .lead { max-width: 850px; font-size: 1.1rem; color: #40565b; }
+    .fine-print { color: var(--muted); font-size: .88rem; }
+
+    .stat-grid, .card-grid, .resource-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin: 26px 0;
+    }
+
+    .stat, .card, .resource-card {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: white;
+      padding: 18px;
+    }
+
+    .stat { border-top: 4px solid var(--gold); }
+    .stat:nth-child(2) { border-top-color: var(--coral); }
+    .stat:nth-child(3) { border-top-color: var(--ocean); }
+    .stat:nth-child(4) { border-top-color: var(--teal); }
+    .stat strong { display: block; font-family: Georgia, serif; font-size: 2.1rem; color: var(--teal-dark); }
+    .stat span { display: block; margin-top: 4px; color: var(--muted); font-size: .88rem; }
+
+    .card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .card h3 { margin-top: 0; }
+    .card--teal { background: var(--soft-teal); border-color: #c3dedd; }
+    .card--gold { background: var(--soft-gold); border-color: #ead59c; }
+    .card--coral { background: var(--soft-coral); border-color: #ecc8bd; }
+
+    .label {
+      display: inline-block;
+      margin-bottom: 9px;
+      color: var(--teal-dark);
+      font-size: .73rem;
+      font-weight: 850;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+    }
+
+    .notice {
+      margin: 22px 0;
+      padding: 17px 19px;
+      border-left: 5px solid var(--coral);
+      border-radius: 0 12px 12px 0;
+      background: var(--soft-coral);
+    }
+
+    .notice strong { color: #873c2c; }
+
+    .table-wrap { overflow-x: auto; margin: 18px 0 28px; border-radius: 13px; border: 1px solid var(--line); }
+    table { width: 100%; min-width: 660px; border-collapse: collapse; background: white; font-size: .92rem; }
+    th { padding: 13px 14px; color: white; background: var(--teal); text-align: left; line-height: 1.25; }
+    td { padding: 12px 14px; border-top: 1px solid var(--line); vertical-align: top; line-height: 1.45; }
+    tbody tr:nth-child(even) { background: #f3f7f6; }
+    .time { white-space: nowrap; font-weight: 780; color: var(--teal-dark); }
+
+    .timeline { margin: 24px 0; padding: 0; list-style: none; }
+    .timeline li {
+      position: relative;
+      margin: 0;
+      padding: 0 0 22px 46px;
+      border-left: 2px solid #b9d3d2;
+    }
+    .timeline li:last-child { border-left-color: transparent; padding-bottom: 0; }
+    .timeline li::before {
+      content: "";
+      position: absolute;
+      left: -9px;
+      top: 3px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--coral);
+      border: 2px solid var(--paper);
+      box-shadow: 0 0 0 2px var(--coral);
+    }
+    .timeline time { display: block; color: var(--coral); font-weight: 850; font-size: .82rem; }
+    .timeline strong { color: var(--teal-dark); }
+    .timeline p { margin: 3px 0 0; }
+
+    details {
+      margin: 12px 0;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: white;
+      overflow: hidden;
+    }
+    summary { padding: 14px 16px; cursor: pointer; color: var(--teal-dark); font-weight: 800; }
+    details[open] summary { background: var(--soft-teal); border-bottom: 1px solid var(--line); }
+    .details-body { padding: 15px 18px 18px; }
+
+    .resource-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .resource-card { display: flex; flex-direction: column; }
+    .resource-card h3 { margin: 0 0 7px; font-size: 1rem; }
+    .resource-card p { color: var(--muted); font-size: .9rem; }
+    .resource-card a { margin-top: auto; font-weight: 780; }
+
+    .page-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 38px;
+      padding-top: 19px;
+      border-top: 1px solid var(--line);
+    }
+    .page-controls button {
+      border: 1px solid #b9cfce;
+      border-radius: 999px;
+      padding: 9px 14px;
+      background: white;
+      color: var(--teal-dark);
+      cursor: pointer;
+      font-weight: 760;
+    }
+    .page-controls button:hover { background: var(--soft-teal); }
+
+    footer { max-width: 1180px; margin: 0 auto; padding: 0 26px 32px; color: var(--muted); font-size: .82rem; }
+
+    @media (max-width: 860px) {
+      .stat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .resource-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .print-button { display: none; }
+    }
+
+    @media (max-width: 620px) {
+      .hero { padding: 38px 20px 30px; }
+      main { padding: 18px 12px 40px; }
+      [role="tabpanel"] { padding: 23px 18px; border-radius: 14px; }
+      .tab-row { padding-inline: 12px; }
+      .card-grid, .resource-grid { grid-template-columns: 1fr; }
+      .stat-grid { gap: 9px; }
+      .stat { padding: 14px; }
+      .stat strong { font-size: 1.7rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; }
+    }
+
+    @media print {
+      body { background: white; }
+      .masthead { color: var(--ink); background: white; border-bottom: 2px solid var(--teal); }
+      .masthead::after, .tab-shell, .page-controls { display: none !important; }
+      .eyebrow { color: var(--coral); }
+      .subtitle { color: var(--ink); }
+      .fact { color: var(--ink); border-color: var(--line); background: white; }
+      main { max-width: none; padding: 0; }
+      [role="tabpanel"], [role="tabpanel"][hidden] {
+        display: block !important;
+        min-height: 0;
+        padding: 24px 0;
+        border: 0;
+        border-bottom: 1px solid var(--line);
+        border-radius: 0;
+        box-shadow: none;
+        break-before: page;
+      }
+      [role="tabpanel"]:first-child { break-before: auto; }
+      details .details-body { display: block; }
+      .resource-card { break-inside: avoid; }
+      a { color: black; text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="masthead">
+    <div class="hero">
+      <p class="eyebrow"></p>
+      <h1>Sega Workshop</h1>
+      <p class="subtitle">A participatory introduction to Mauritian music through rhythm, voice and ensemble playing.</p>
+      <div class="facts" aria-label="Event details">
+        <span class="fact">14 November 2026</span>
+        <span class="fact">Festival 11:00 am–6:00 pm</span>
+        <span class="fact">Workshops 11:30 · 1:00 · 2:30</span>
+        <span class="fact">Ages 9 to adult</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="tab-shell">
+    <nav class="tab-row" role="tablist" aria-label="Workshop plan sections">
+      <button role="tab" id="tab-overview" aria-controls="panel-overview" aria-selected="true" data-tab="overview">Overview</button>
+      <button role="tab" id="tab-concept" aria-controls="panel-concept" aria-selected="false" tabindex="-1" data-tab="concept">Concept</button>
+      <button role="tab" id="tab-delivery" aria-controls="panel-delivery" aria-selected="false" tabindex="-1" data-tab="delivery">Delivery</button>
+      <button role="tab" id="tab-session" aria-controls="panel-session" aria-selected="false" tabindex="-1" data-tab="session">30-minute session</button>
+      <button role="tab" id="tab-instruments" aria-controls="panel-instruments" aria-selected="false" tabindex="-1" data-tab="instruments">Instruments</button>
+      <button role="tab" id="tab-instructors" aria-controls="panel-instructors" aria-selected="false" tabindex="-1" data-tab="instructors">Instructors</button>
+      <button role="tab" id="tab-logistics" aria-controls="panel-logistics" aria-selected="false" tabindex="-1" data-tab="logistics">Logistics</button>
+      <button role="tab" id="tab-safety" aria-controls="panel-safety" aria-selected="false" tabindex="-1" data-tab="safety">Safety & access</button>
+      <button role="tab" id="tab-preparation" aria-controls="panel-preparation" aria-selected="false" tabindex="-1" data-tab="preparation">Preparation</button>
+      <button role="tab" id="tab-resources" aria-controls="panel-resources" aria-selected="false" tabindex="-1" data-tab="resources">Resources</button>
+      <button class="print-button" id="printPlan" type="button">Print full plan</button>
+    </nav>
+  </div>
+
+  <main>
+    <section role="tabpanel" id="panel-overview" aria-labelledby="tab-overview" tabindex="0" data-panel="overview">
+      <p class="page-kicker">Section 1 of 10</p>
+      <h2>So, what is this (in short)?</h2>
+      <p class="lead">A structured, beginner-friendly activity that promotes Mauritian music culture through participation. Each group learns the sega pulse, adds a simple vocal response, develops three instrumental parts and finishes with a genuine ensemble performance.</p>
+
+      <div class="stat-grid" aria-label="Workshop statistics">
+        <div class="stat"><strong>3</strong><span>workshops across the festival day</span></div>
+        <div class="stat"><strong>30 min</strong><span>from welcome to final performance</span></div>
+        <div class="stat"><strong>15</strong><span>active places in each workshop</span></div>
+        <div class="stat"><strong>1:5</strong><span>teacher-to-participant station ratio</span></div>
+      </div>
+
+      <div class="card-grid">
+        <article class="card card--teal">
+          <span class="label">How it works</span>
+          <h3>Learn together then perform</h3>
+          <p>The lead teaches the shared pulse and vocal response. Participants then move into ravanne, djembe and support-instrument groups before re-forming as one ensemble.</p>
+        </article>
+        <article class="card card--gold">
+          <span class="label">Instrument model</span>
+          <h3>1 x Ravannne Station, 1 x Djembe Station and 1 x Various instrument station</h3>
+          <p>Provide five ravannes and five djembes. The support station uses five parts selected from maravanne, cajón, sticks and triangle.</p>
+        </article>
+        <article class="card">
+          <span class="label">Who it is for</span>
+          <h3>Ages 9 to adult</h3>
+          <p>No musical experience or Mauritian Creole is required. Children under 12 should remain with a responsible adult, subject to festival policy.</p>
+        </article>
+        <article class="card card--coral">
+          <span class="label">Operating principle</span>
+          <h3>Listen together play together stop together</h3>
+          <p>This is a guided music lesson—not an unrestricted noise-making activity. Everyone follows shared cues and plays an agreed part.</p>
+        </article>
+      </div>
+
+      <h3>Immediate priorities</h3>
+      <ol>
+        <li>Confirm the venue, weather plan, power, noise, access, insurance and organiser responsibilities.</li>
+        <li>Allocate the lead, three instrument teachers and host or floater; confirm screening and child-safety requirements.</li>
+        <li>Audit the instruments, select a culturally appropriate and cleared song, and agree the three parts.</li>
+        <li>Record teaching references, then complete a timed rehearsal and beginner pilot before retaining the 15-person capacity.</li>
+      </ol>
+
+      <div class="notice"><strong>Working assumption:</strong> the event is in Victoria, Australia. Final venue conditions, festival rules and individual instructor assignments still need confirmation.</div>
+      <div class="page-controls"><span></span><button type="button" data-next="concept">Next: Concept →</button></div>
+    </section>
+
+    <section role="tabpanel" id="panel-concept" aria-labelledby="tab-concept" tabindex="0" data-panel="concept" hidden>
+      <p class="page-kicker">Section 2 of 10</p>
+      <h2>Concept and cultural framing</h2>
+      <p class="lead">The design borrows a strong idea from Pub Choir: teach achievable parts separately, remove the need for musical literacy and bring everyone together for a satisfying shared result. It also foregrounds musicality—hearing and feeling rhythm before playing it.</p>
+
+      <h3>Objectives</h3>
+      <ul>
+        <li>Promote Mauritian musical culture through active participation rather than passive demonstration.</li>
+        <li>Introduce the sound, role and respectful handling of ravanne, maravanne and triangle.</li>
+        <li>Help participants feel the rolling sega pulse as two main beats divided into three: <strong>ONE two three, TWO two three</strong>.</li>
+        <li>Use a short call-and-response chorus or neutral vocable so people can join without speaking Mauritian Creole.</li>
+        <li>Teach one achievable part per instrument and finish with a complete ensemble performance.</li>
+        <li>Encourage participants to seek out Mauritian artists, music and community events.</li>
+      </ul>
+
+      <h3>Cultural framing</h3>
+      <p>Traditional Mauritian Sega Tipik is recognised by UNESCO as intangible cultural heritage and is closely associated with the Creole community. Ravanne, maravanne and triangle are the core traditional instruments. Djembe is used here as an advanced workshop instrument and cajón may be used in the support station; both should be described as percussion adaptations rather than traditional Sega Tipik instruments.</p>
+      <p>Open with a 60–90 second, age-appropriate introduction covering where sega comes from, its connection to Mauritian Creole history and community life, and the relationship between song, rhythm and dance.</p>
+      <div class="notice"><strong>Language:</strong> an invented phrase should not be presented as authentic Mauritian Creole. Use a genuine, cleared refrain with agreed pronunciation and meaning, or clearly describe a neutral vocable as a workshop device.</div>
+
+      <div class="card-grid">
+        <article class="card card--teal"><h3>The workshop is</h3><ul><li>A guided, hands-on music lesson</li><li>A respectful cultural introduction</li><li>A collaborative ensemble experience</li><li>Beginner-friendly and learn-by-ear</li><li>Structured around listening and shared cues</li></ul></article>
+        <article class="card card--coral"><h3>The workshop is not</h3><ul><li>An unrestricted noise-making zone</li><li>A claim of authentic mastery in 30 minutes</li><li>A competition or musical test</li><li>Dependent on notation or Creole</li><li>Continuous playing while teachers speak</li></ul></article>
+      </div>
+      <div class="page-controls"><button type="button" data-next="overview">← Overview</button><button type="button" data-next="delivery">Next: Delivery →</button></div>
+    </section>
+
+    <section role="tabpanel" id="panel-delivery" aria-labelledby="tab-delivery" tabindex="0" data-panel="delivery" hidden>
+      <p class="page-kicker">Section 3 of 10</p>
+      <h2>Festival delivery model</h2>
+      <p class="lead">Three workshops run every 90 minutes from 11:30 am. The 60-minute gap after each workshop protects instructor energy and allows time for reset, registration, demonstrations and recovery from delays.</p>
+
+      <div class="table-wrap"><table>
+        <thead><tr><th>Time</th><th>Activity</th><th>Operational purpose</th></tr></thead>
+        <tbody>
+          <tr><td class="time">Before 11:00</td><td>Set-up, safety check and soundcheck</td><td>Complete before the public program opens</td></tr>
+          <tr><td class="time">11:00–11:20</td><td>Live teaser and registration</td><td>Attract interest and fill Workshop 1</td></tr>
+          <tr><td class="time">11:30–12:00</td><td><strong>Workshop 1</strong></td><td>15 participant places</td></tr>
+          <tr><td class="time">12:00–1:00</td><td>Reset, registration and informal demonstration</td><td>Clean and count instruments; promote Workshop 2</td></tr>
+          <tr><td class="time">1:00–1:30</td><td><strong>Workshop 2</strong></td><td>15 participant places</td></tr>
+          <tr><td class="time">1:30–2:30</td><td>Meal break, reset and registration</td><td>Protect instructor energy; promote Workshop 3</td></tr>
+          <tr><td class="time">2:30–3:00</td><td><strong>Workshop 3</strong></td><td>15 participant places</td></tr>
+          <tr><td class="time">3:00–5:30</td><td>Festival engagement as agreed</td><td>Demonstrations, display, questions or performance</td></tr>
+          <tr><td class="time">5:30–6:00</td><td>Close, count and pack-down</td><td>Return the site safely and document issues</td></tr>
+        </tbody>
+      </table></div>
+
+      <h3>Capacity and booking</h3>
+      <ul>
+        <li>Advertise 15 active places per workshop: three instrument groups of five and up to 45 places across the day.</li>
+        <li>Count every actively participating adult or child as one place, including an adult joining to support a younger child.</li>
+        <li>Use advance booking where possible, with a small walk-up allocation or waitlist.</li>
+        <li>Issue a coloured session card or wristband so participants can return at the correct time.</li>
+        <li>Close entry once the safety briefing starts. Late arrivals may observe but should not receive instruments mid-session.</li>
+        <li>Set the final cap by safe, playable instrument numbers—not floor space alone.</li>
+      </ul>
+
+      <h3>Participation agreement</h3>
+      <p>At the start, ask everyone to agree that instruments remain quiet when the stop signal is raised, they will play only the demonstrated pattern, and all instruments will be handled with care.</p>
+      <div class="page-controls"><button type="button" data-next="concept">← Concept</button><button type="button" data-next="session">Next: Session plan →</button></div>
+    </section>
+
+    <section role="tabpanel" id="panel-session" aria-labelledby="tab-session" tabindex="0" data-panel="session" hidden>
+      <p class="page-kicker">Section 4 of 10</p>
+      <h2>The 30-minute session</h2>
+      <p class="lead">Move from listening to shared pulse, voice, small-group coaching and finally a complete performance. Reliability matters more than complexity.</p>
+
+      <ol class="timeline">
+        <li><time>0–2 minutes</time><strong>Welcome, context and playing agreement</strong><p>Introduce Sega Tipik, name the instruments and establish the stop signal.</p></li>
+        <li><time>2–5 minutes</time><strong>Listen and find the pulse</strong><p>Use a live duo or approved track; pat knees or step before handing out instruments.</p></li>
+        <li><time>5–9 minutes</time><strong>Sticks and triangle foundation</strong><p>Echo short patterns; count ONE two three, TWO two three; practise start and stop.</p></li>
+        <li><time>9–12 minutes</time><strong>Add the vocal response</strong><p>Teach a short chorus or neutral vocable by call and response, then combine it with the pulse.</p></li>
+        <li><time>12–14 minutes</time><strong>Move into three stations</strong><p>Use pre-assigned colours. Participants carry no instruments between stations.</p></li>
+        <li><time>14–24 minutes</time><strong>Instrument coaching</strong><p>Ravanne, djembe and support-instrument groups learn one repeating part.</p></li>
+        <li><time>24–26 minutes</time><strong>Re-form the ensemble</strong><p>The lead sets tempo and each section demonstrates its pattern once.</p></li>
+        <li><time>26–28 minutes</time><strong>Two guided run-throughs</strong><p>First instruments only, then instruments plus vocal response.</p></li>
+        <li><time>28–30 minutes</time><strong>Final performance and close</strong><p>Perform without interruption, thank participants and name the instruments again.</p></li>
+      </ol>
+
+      <div class="card-grid">
+        <article class="card"><h3>Core facilitation cues</h3><ul><li>Teach sound before terminology.</li><li>Use the same stop, count-in and ending cues at every station.</li><li>Build from body pulse to foundation instrument, then allocated station instrument.</li><li>If time is lost, remove one layer and rebuild.</li></ul></article>
+        <article class="card card--gold"><h3>Song and track brief</h3><ul><li>Clear, steady sega feel with audible triple subdivision</li><li>Comfortable first-timer tempo</li><li>Two-to-three-minute final arrangement</li><li>Short vocal response with easy vowels</li><li>Obvious introduction and planned ending</li><li>Offline copies on two devices and a live fallback</li></ul></article>
+      </div>
+      <p class="fine-print">Confirm public-performance and recording rights with the festival before rehearsals. Use an original or explicitly cleared arrangement, or confirm the organiser’s OneMusic coverage.</p>
+      <div class="page-controls"><button type="button" data-next="delivery">← Delivery</button><button type="button" data-next="instruments">Next: Instruments →</button></div>
+    </section>
+
+    <section role="tabpanel" id="panel-instruments" aria-labelledby="tab-instruments" tabindex="0" data-panel="instruments" hidden>
+      <p class="page-kicker">Section 5 of 10</p>
+      <h2>Instrument teaching briefs</h2>
+      <p class="lead">Each station uses the same ten-minute arc: identify the instrument, establish safe posture, say and practise the sounds slowly, loop a short pattern, then rehearse the shared cues.</p>
+
+      <details open><summary>Shared foundation with sticks and triangle</summary><div class="details-body"><ul><li>Name the instruments and demonstrate quiet ready position before distribution.</li><li>Establish the two main pulses and groups of three using voice and knee pats.</li><li>Model a simple repeated pattern, alternating leader and group echoes.</li><li>Practise count-in, stop signal and a soft dynamic before music.</li><li>Keep sticks below shoulder height; triangle beaters point down at rest.</li></ul></div></details>
+      <details open><summary>Advanced station — ravanne</summary><div class="details-body"><ol><li><strong>0–1:</strong> identify the central frame drum of Sega Tipik and explain respectful handling.</li><li><strong>1–3:</strong> show supported grip, posture and safe hand position; offer a stand if needed.</li><li><strong>3–5:</strong> demonstrate the one or two sounds required, using shared syllables.</li><li><strong>5–8:</strong> teach a one-bar loop by echo, slowly and then at performance tempo.</li><li><strong>8–10:</strong> practise count-in, four repeats, stop and restart. Never heat animal-skin heads with an open flame in the public area.</li></ol></div></details>
+      <details open><summary>Advanced station — djembe</summary><div class="details-body"><ol><li><strong>0–1:</strong> identify the djembe as an advanced workshop instrument and a supporting adaptation.</li><li><strong>1–3:</strong> show safe posture, stable placement and relaxed hands.</li><li><strong>3–5:</strong> teach only the low and high sound needed, or simplify to one sound.</li><li><strong>5–8:</strong> build the repeated pattern one pulse at a time.</li><li><strong>8–10:</strong> practise count-in, staying beneath ravanne volume, stop and restart.</li></ol></div></details>
+      <details open><summary>Support station — maravanne, cajón, sticks or triangle</summary><div class="details-body"><ol><li><strong>0–1:</strong> name the allocated instrument and its role. Identify maravanne and triangle as traditional; describe cajón and sticks as workshop tools.</li><li><strong>1–3:</strong> demonstrate safe grip or posture and the one required sound or motion.</li><li><strong>3–5:</strong> establish the simplest subdivision or accent using the shared count.</li><li><strong>5–8:</strong> loop for four to eight cycles and practise rejoining after losing the pulse.</li><li><strong>8–10:</strong> practise count-in, playing under the vocal response, stop and restart.</li></ol></div></details>
+
+      <h3>Teaching video specification</h3>
+      <p>Record one 60–90 second reference video for each part and one combined ensemble video. Show the instrument name and role, grip from front and side, the pattern slowly with spoken sounds, four clean cycles at performance tempo, and the shared count-in, stop signal and ending.</p>
+      <div class="page-controls"><button type="button" data-next="session">← Session plan</button><button type="button" data-next="instructors">Next: Instructors →</button></div>
+    </section>
+
+    <section role="tabpanel" id="panel-instructors" aria-labelledby="tab-instructors" tabindex="0" data-panel="instructors" hidden>
+      <p class="page-kicker">Section 6 of 10</p>
+      <h2>Team and instructor guidance</h2>
+      <p class="lead">Five people support the 15-participant model: a lead facilitator, three station teachers and a host or floater.</p>
+
+      <div class="table-wrap"><table>
+        <thead><tr><th>Role</th><th>Responsibilities</th><th>Assignment</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Lead facilitator</strong></td><td>Cultural introduction, shared pulse, vocal response, count-ins and final ensemble</td><td>Workshop lead or musical director</td></tr>
+          <tr><td><strong>Ravanne teacher</strong></td><td>Briefing, technique, beginner pattern and section cueing</td><td>Confirm from Clarel, Merv, Jason or Shaun</td></tr>
+          <tr><td><strong>Djembe teacher</strong></td><td>Posture, low/high sounds, pattern, dynamics and cueing</td><td>Confirm from Clarel, Merv, Jason or Shaun</td></tr>
+          <tr><td><strong>Support-instrument teacher</strong></td><td>Maravanne, cajón, sticks or triangle setup, simple pattern and dynamics</td><td>Confirm from Clarel, Merv, Jason or Shaun</td></tr>
+          <tr><td><strong>Host and floater</strong></td><td>Registration, child-safety visibility, timing, access, reset and emergencies</td><td>Remaining team member, able to cover any station</td></tr>
+        </tbody>
+      </table></div>
+
+      <div class="card-grid">
+        <article class="card card--coral"><h3>Instructor readiness</h3><ul><li>Hold a current Victorian Working with Children Clearance or organiser-accepted exemption where required.</li><li>Complete the festival child-safety briefing and understand reporting contacts.</li><li>Teach in an open group area and avoid isolated one-to-one contact.</li><li>Know the part, sound syllables, cues, ending and simplified fallback.</li></ul></article>
+        <article class="card card--teal"><h3>One teaching cycle</h3><p><strong>Say it → tap it → play it slowly → loop it → add the music.</strong></p><ul><li>Start with one basic action.</li><li>Use call and response.</li><li>Loop for four to eight cycles.</li><li>Teach participants how to rejoin.</li><li>Add one layer at a time.</li><li>Simplify early when needed.</li></ul></article>
+      </div>
+
+      <div class="notice"><strong>WWC Connect:</strong> because the festival occurs after 19 October 2026, the engaging organisation should verify its WWC Connect obligations if instructors are engaged in child-related work. Current VIT-registered teachers should follow the separate notification rules that apply.</div>
+
+      <h3>Minimum rehearsal plan</h3>
+      <ol><li>Music meeting to agree culture, song, pulse language, vocal response, parts, tempo and ending.</li><li>Each teacher delivers the ten-minute station lesson to the others.</li><li>Run the full 30 minutes with a visible timer and both transitions.</li><li>Pilot with 10–15 invited beginners and simplify weak instructions or patterns.</li><li>Run a final production rehearsal with the exact layout, audio, instruments and roles.</li></ol>
+      <p><strong>Go or no-go:</strong> retain the 15-person format only if a pilot group reaches the final performance by minute 28 without teachers playing every part for them.</p>
+      <div class="page-controls"><button type="button" data-next="instruments">← Instruments</button><button type="button" data-next="logistics">Next: Logistics →</button></div>
+    </section>
+
+    <section role="tabpanel" id="panel-logistics" aria-labelledby="tab-logistics" tabindex="0" data-panel="logistics" hidden>
+      <p class="page-kicker">Section 7 of 10</p>
+      <h2>Space and equipment</h2>
+      <p class="lead">Plan for a weather-protected area of roughly 8 × 8 metres or larger, confirmed on site. Use one central semicircle and three marked clusters of five armless chairs.</p>
+
+      <h3>Layout checklist</h3>
+      <ul>
+        <li>Maintain accessible paths, clear sightlines to the lead and a buffer from neighbouring amplified activities.</li>
+        <li>Separate the ravanne and djembe groups so both teachers can be heard without competing on volume.</li>
+        <li>Place the speaker in front of participants and away from registration.</li>
+        <li>Use station colours on chairs and instruments for fast allocation and return.</li>
+        <li>Provide an observer area that does not block exits, paths or the view of children.</li>
+        <li>Confirm shade, rain and wind plans, power, cables, lighting, toilets, water and first aid.</li>
+      </ul>
+
+      <div class="table-wrap"><table>
+        <thead><tr><th>Category</th><th>Minimum requirement</th><th>Capacity note</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Advanced instruments</strong></td><td>5 ravannes and 5 djembes</td><td>One instrument per participant in each advanced station</td></tr>
+          <tr><td><strong>Support and foundation</strong></td><td>5 support parts from maravanne, cajón, sticks or triangle; plus 15–20 sets of sticks and/or triangles for the opening</td><td>Support sticks or triangles may transfer from the foundation pool after the opening</td></tr>
+          <tr><td><strong>Furniture</strong></td><td>15 armless chairs, 2 spare chairs and 2 tables</td><td>Drums may need different seat heights</td></tr>
+          <tr><td><strong>Audio</strong></td><td>Powered speaker, input lead, two playback devices and offline files</td><td>Use approved extension leads and cable covers</td></tr>
+          <tr><td><strong>Facilitation</strong></td><td>Large timer, station signs, visual cue cards, clipboards and pens</td><td>Cue cards show ready, play, softer and stop</td></tr>
+          <tr><td><strong>Registration</strong></td><td>Session list, waitlist, coloured cards or wristbands</td><td>Collect only necessary personal information</td></tr>
+          <tr><td><strong>Safety and hygiene</strong></td><td>First-aid access, surface-safe wipes, sanitiser, water and optional earplugs</td><td>Confirm products are safe for skins, timber and finishes</td></tr>
+          <tr><td><strong>Contingency</strong></td><td>Spare beaters, tape, batteries, repair kit and printed run sheet</td><td>Do not make structural repairs during a live session</td></tr>
+        </tbody>
+      </table></div>
+
+      <div class="notice"><strong>Instrument threshold:</strong> if five ravannes, five djembes, five support parts and at least 15 foundation instruments cannot be supplied safely, reduce capacity or redesign the stations before advertising.</div>
+      <div class="page-controls"><button type="button" data-next="instructors">← Instructors</button><button type="button" data-next="safety">Next: Safety & access →</button></div>
+    </section>
+
+    <section role="tabpanel" id="panel-safety" aria-labelledby="tab-safety" tabindex="0" data-panel="safety" hidden>
+      <p class="page-kicker">Section 8 of 10</p>
+      <h2>Participant experience safety and access</h2>
+
+      <h3>Participant journey</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Stage</th><th>What participants need</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Before the festival</strong></td><td>Times, duration, age and access guidance, capacity, and reassurance that no experience or Creole is required</td></tr>
+          <tr><td><strong>At sign-up</strong></td><td>Return time, meeting point, supervision expectations and photography notice</td></tr>
+          <tr><td><strong>At arrival</strong></td><td>Warm welcome, accessible seating and a clear place for bags and prams</td></tr>
+          <tr><td><strong>During the lesson</strong></td><td>Short demonstrations, visible cues, seated options and a quieter position</td></tr>
+          <tr><td><strong>At the finish</strong></td><td>Recognition, instrument names, ways to learn more and a simple feedback prompt</td></tr>
+        </tbody>
+      </table></div>
+
+      <h3>Accessibility measures</h3>
+      <ul><li>Provide a step-free route and at least one flexible space for a wheelchair or mobility aid.</li><li>Offer seated, standing and lower-impact ways to keep the pulse; never require dancing or singing.</li><li>Combine demonstrations, spoken counts and visual cue cards.</li><li>Offer an edge seat or quieter location and keep volume suitable for instruction.</li><li>Adapt grip or support instruments on a safe stand or table.</li><li>Invite access needs at registration without unnecessary medical detail.</li></ul>
+
+      <h3>Risk controls</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Risk</th><th>Control</th><th>Owner</th></tr></thead>
+        <tbody>
+          <tr><td>Excessive noise</td><td>Soundcheck, modest speaker level, quiet resets and optional hearing protection</td><td>Lead and audio operator</td></tr>
+          <tr><td>Instrument misuse</td><td>Ready position, spacing, stop signal and equipment removal when unsafe</td><td>All instrument teachers</td></tr>
+          <tr><td>Trips or blocked access</td><td>Cover or reroute cables; keep bags outside the playing area and aisles clear</td><td>Host and venue contact</td></tr>
+          <tr><td>Damaged equipment</td><td>Inspect before each session and quarantine cracked sticks or unstable seating</td><td>Station teacher</td></tr>
+          <tr><td>Child-safety concern</td><td>Open layout, no isolated teaching, verified screening obligations and reporting contact</td><td>Workshop and festival child-safety leads</td></tr>
+          <tr><td>Photography</td><td>Clear notice, specific consent, no-photo identifiers and child plus carer permission</td><td>Festival media lead</td></tr>
+          <tr><td>Heat rain or wind</td><td>Shade, water, secured items and an agreed relocation or cancellation trigger</td><td>Festival site manager</td></tr>
+          <tr><td>Shared-instrument hygiene</td><td>Hand hygiene and material-safe surface cleaning</td><td>Host and teachers</td></tr>
+          <tr><td>Cultural inaccuracy</td><td>Agree history, language, song and framing with experienced Mauritian practitioners</td><td>Musical director</td></tr>
+          <tr><td>Playback failure</td><td>Two offline devices, spare leads and a fully live fallback</td><td>Lead and audio operator</td></tr>
+        </tbody>
+      </table></div>
+      <p class="fine-print">This supports planning but does not replace the organiser’s formal risk assessment, insurance conditions, emergency plan or legal advice.</p>
+      <div class="page-controls"><button type="button" data-next="logistics">← Logistics</button><button type="button" data-next="preparation">Next: Preparation →</button></div>
+    </section>
+
+    <section role="tabpanel" id="panel-preparation" aria-labelledby="tab-preparation" tabindex="0" data-panel="preparation" hidden>
+      <p class="page-kicker">Section 9 of 10</p>
+      <h2>Preparation to 14 November</h2>
+
+      <ol class="timeline">
+        <li><time>By 26 September</time><strong>Confirm the concept with the festival</strong><p>Agree space, power, noise, capacity, insurance, child safety, WWC ownership, accessibility, photography and music licensing.</p></li>
+        <li><time>By 3 October</time><strong>Assign roles and audit instruments</strong><p>Confirm instructor status and counts of five ravannes, five djembes, five support parts and 15–20 foundation instruments.</p></li>
+        <li><time>By 10 October</time><strong>Lock music and lesson architecture</strong><p>Confirm arrangement, rights, pulse language, vocal response, parts, count-in and ending.</p></li>
+        <li><time>By 17 October</time><strong>Record teaching references</strong><p>Produce three station videos, practice tracks and a full-ensemble reference.</p></li>
+        <li><time>By 24 October</time><strong>Complete the first timed rehearsal</strong><p>Revise the script, simplify patterns and confirm transitions.</p></li>
+        <li><time>By 31 October</time><strong>Run a beginner pilot</strong><p>Observe timing and participant experience; make the final capacity decision.</p></li>
+        <li><time>By 7 November</time><strong>Freeze event materials</strong><p>Complete public copy, bookings, signage, cue cards, run sheet and equipment manifest.</p></li>
+        <li><time>13 November</time><strong>Pack and final check</strong><p>Charge devices, download audio, label instruments, print contacts and make the weather decision.</p></li>
+        <li><time>14 November</time><strong>Deliver and review</strong><p>Run three workshops, record attendance and incidents, and debrief the team.</p></li>
+      </ol>
+
+      <div class="card-grid">
+        <article class="card card--teal"><h3>Measures of success</h3><ul><li>Sessions finish within five minutes of schedule.</li><li>At least 80% of booked places are used.</li><li>Most participants maintain their part in the final performance.</li><li>Participants can name a traditional instrument.</li><li>No preventable safety incident or damage occurs.</li><li>The team records specific improvements.</li></ul></article>
+        <article class="card card--gold"><h3>Decisions to close</h3><ul><li>Confirm the three workshop times.</li><li>Finalise the age and adult-supervision rule.</li><li>Confirm all three instrument stations.</li><li>Select the song and vocal response.</li><li>Confirm capacity after the pilot.</li><li>Close photography, licensing and weather arrangements.</li></ul></article>
+      </div>
+      <div class="page-controls"><button type="button" data-next="safety">← Safety & access</button><button type="button" data-next="resources">Next: Resources →</button></div>
+    </section>
+
+    <section role="tabpanel" id="panel-resources" aria-labelledby="tab-resources" tabindex="0" data-panel="resources" hidden>
+      <p class="page-kicker">Section 10 of 10</p>
+      <h2>Useful resources</h2>
+      <p class="lead">These links support cultural accuracy, participatory teaching and Australian event planning. Legal and venue requirements should be rechecked close to the festival date.</p>
+
+      <h3>Mauritian cultural context</h3>
+      <div class="resource-grid">
+        <article class="resource-card"><h3>UNESCO Traditional Mauritian Sega</h3><p>Heritage overview, nomination material and audiovisual examples.</p><a href="https://ich.unesco.org/en/RL/traditional-mauritian-sega-01003" target="_blank" rel="noopener">Open resource ↗</a></article>
+        <article class="resource-card"><h3>Mauritius National Heritage Fund</h3><p>Concise history and the traditional instrument names.</p><a href="https://nhf.govmu.org/nhf/?page_id=723" target="_blank" rel="noopener">Open resource ↗</a></article>
+        <article class="resource-card"><h3>Mauritius Ministry ravanne workshop</h3><p>A recent children’s ravanne cultural-transmission example.</p><a href="https://culture.govmu.org/mach/?p=7711" target="_blank" rel="noopener">Open resource ↗</a></article>
+        <article class="resource-card"><h3>Mauritius Institute of Education guide</h3><p>Learning outcomes for traditional instruments and basic rhythm.</p><a href="https://web.mie.ac.mu/wp-content/uploads/2025/10/Grade-7-Term-2.pdf" target="_blank" rel="noopener">Open PDF ↗</a></article>
+      </div>
+
+      <h3>Participatory teaching</h3>
+      <div class="resource-grid">
+        <article class="resource-card"><h3>Pub Choir</h3><p>The teach-separate-parts-then-perform model.</p><a href="https://www.pubchoir.com.au/watch" target="_blank" rel="noopener">Watch examples ↗</a></article>
+        <article class="resource-card"><h3>Smithsonian rhythm sticks lesson</h3><p>Steady beat, rhythm sticks, singing and call and response.</p><a href="https://folkways.si.edu/magazine-fall-2010-john-rabbit-story-song-lesson-plan/childrens/music/article/smithsonian" target="_blank" rel="noopener">Open lesson ↗</a></article>
+        <article class="resource-card"><h3>Carnegie Hall rhythm and groove</h3><p>Rhythmic response, body percussion and gradual variation.</p><a href="https://www.carnegiehall.org/Education/Programs/Link-Up/National-Program/The-Orchestra-Rocks/Explore-Rhythm-and-Groove" target="_blank" rel="noopener">Open activities ↗</a></article>
+      </div>
+
+      <h3>Event access and safety</h3>
+      <div class="resource-grid">
+        <article class="resource-card"><h3>OneMusic Australia</h3><p>Event licensing for live and recorded music.</p><a href="https://onemusic.com.au/licences/events/new-scheme-information" target="_blank" rel="noopener">Open guidance ↗</a></article>
+        <article class="resource-card"><h3>Victorian Child Safe Standards</h3><p>Starting point for the organiser’s obligations.</p><a href="https://www.vic.gov.au/about-child-safe-standards-0" target="_blank" rel="noopener">Open guidance ↗</a></article>
+        <article class="resource-card"><h3>Working with Children guidance</h3><p>When a clearance or exemption may apply.</p><a href="https://www.vic.gov.au/do-i-need-check" target="_blank" rel="noopener">Open guidance ↗</a></article>
+        <article class="resource-card"><h3>Accessible events guide</h3><p>Australian Human Rights Commission guidance.</p><a href="https://humanrights.gov.au/__data/assets/pdf_file/0008/11312/includeability_-_guide_-_hosting_accessible_and_inclusive_in-person_meetings_and_events.pdf" target="_blank" rel="noopener">Open PDF ↗</a></article>
+        <article class="resource-card"><h3>Safe Work Australia noise guidance</h3><p>Practical noise identification and controls.</p><a href="https://www.safeworkaustralia.gov.au/safety-topic/hazards/noise" target="_blank" rel="noopener">Open guidance ↗</a></article>
+        <article class="resource-card"><h3>eSafety photo and video sharing</h3><p>Consent guidance for children and young people.</p><a href="https://www.esafety.gov.au/key-topics/online-tools-and-features/photo-and-video-sharing" target="_blank" rel="noopener">Open guidance ↗</a></article>
+        <article class="resource-card"><h3>Victorian WWC Connect</h3><p>Verification, connection and record requirements from 19 October 2026.</p><a href="https://www.vic.gov.au/working-children-connect" target="_blank" rel="noopener">Open guidance ↗</a></article>
+      </div>
+
+      <h3>Next working documents</h3>
+      <ul><li>One-page event-day run sheet with cues, names and phone contacts</li><li>One instrument card per station showing grip, spoken pattern and stop cue</li><li>Participant-facing festival description and booking form</li><li>Equipment manifest with owner, quantity, condition and return checks</li><li>Festival risk assessment and child-safety briefing</li></ul>
+      <div class="page-controls"><button type="button" data-next="preparation">← Preparation</button><button type="button" data-next="overview">Back to overview ↑</button></div>
+    </section>
+  </main>
+
+  <footer>Prepared for festival organisers, workshop instructors and volunteers · Final interactive plan · 21 September 2026</footer>
+
+  <script>
+    (() => {
+      const tabs = [...document.querySelectorAll('[role="tab"]')];
+      const panels = [...document.querySelectorAll('[role="tabpanel"]')];
+      const validIds = new Set(tabs.map(tab => tab.dataset.tab));
+
+      function activate(id, moveFocus = false) {
+        const safeId = validIds.has(id) ? id : 'overview';
+        tabs.forEach(tab => {
+          const selected = tab.dataset.tab === safeId;
+          tab.setAttribute('aria-selected', String(selected));
+          tab.tabIndex = selected ? 0 : -1;
+          if (selected) {
+            tab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            if (moveFocus) tab.focus();
+          }
+        });
+        panels.forEach(panel => { panel.hidden = panel.dataset.panel !== safeId; });
+        history.replaceState(null, '', `#${safeId}`);
+        window.scrollTo({ top: document.querySelector('.tab-shell').offsetTop, behavior: 'smooth' });
+      }
+
+      tabs.forEach((tab, index) => {
+        tab.addEventListener('click', () => activate(tab.dataset.tab));
+        tab.addEventListener('keydown', event => {
+          let target = null;
+          if (event.key === 'ArrowRight') target = tabs[(index + 1) % tabs.length];
+          if (event.key === 'ArrowLeft') target = tabs[(index - 1 + tabs.length) % tabs.length];
+          if (event.key === 'Home') target = tabs[0];
+          if (event.key === 'End') target = tabs[tabs.length - 1];
+          if (target) {
+            event.preventDefault();
+            activate(target.dataset.tab, true);
+          }
+        });
+      });
+
+      document.querySelectorAll('[data-next]').forEach(button => {
+        button.addEventListener('click', () => activate(button.dataset.next, true));
+      });
+
+      document.getElementById('printPlan').addEventListener('click', () => window.print());
+      window.addEventListener('hashchange', () => activate(location.hash.slice(1)));
+      activate(location.hash.slice(1));
+    })();
+  </script>
+</body>
+</html>
