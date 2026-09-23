@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Interactive plan for a participatory Mauritian sega workshop on 14 November 2026.">
-  <title>Sega Workshop Plan</title>
+  <title>Sega Workshop Festival Plan</title>
   <style>
     :root {
       --ink: #17252b;
@@ -297,6 +297,28 @@
     details[open] summary { background: var(--soft-teal); border-bottom: 1px solid var(--line); }
     .details-body { padding: 15px 18px 18px; }
 
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 16px;
+    }
+    .video-card {
+      padding: 14px;
+      border: 1px solid #c8dcdb;
+      border-radius: 12px;
+      background: #f5faf9;
+    }
+    .video-card h4 { margin: 0 0 10px; color: var(--teal-dark); }
+    .video-frame {
+      overflow: hidden;
+      aspect-ratio: 16 / 9;
+      border-radius: 9px;
+      background: #142f2e;
+    }
+    .video-frame iframe { display: block; width: 100%; height: 100%; border: 0; }
+    .video-link { display: inline-block; margin-top: 9px; font-size: .88rem; font-weight: 760; }
+
     .resource-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .resource-card { display: flex; flex-direction: column; }
     .resource-card h3 { margin: 0 0 7px; font-size: 1rem; }
@@ -336,7 +358,7 @@
       main { padding: 18px 12px 40px; }
       [role="tabpanel"] { padding: 23px 18px; border-radius: 14px; }
       .tab-row { padding-inline: 12px; }
-      .card-grid, .resource-grid { grid-template-columns: 1fr; }
+      .card-grid, .resource-grid, .video-grid { grid-template-columns: 1fr; }
       .stat-grid { gap: 9px; }
       .stat { padding: 14px; }
       .stat strong { font-size: 1.7rem; }
@@ -374,7 +396,7 @@
 <body>
   <header class="masthead">
     <div class="hero">
-      <p class="eyebrow"></p>
+      <p class="eyebrow">Festival program plan</p>
       <h1>Sega Workshop</h1>
       <p class="subtitle">A participatory introduction to Mauritian music through rhythm, voice and ensemble playing.</p>
       <div class="facts" aria-label="Event details">
@@ -405,7 +427,7 @@
   <main>
     <section role="tabpanel" id="panel-overview" aria-labelledby="tab-overview" tabindex="0" data-panel="overview">
       <p class="page-kicker">Section 1 of 10</p>
-      <h2>So, what is this (in short)?</h2>
+      <h2>Executive overview</h2>
       <p class="lead">A structured, beginner-friendly activity that promotes Mauritian music culture through participation. Each group learns the sega pulse, adds a simple vocal response, develops three instrumental parts and finishes with a genuine ensemble performance.</p>
 
       <div class="stat-grid" aria-label="Workshop statistics">
@@ -423,7 +445,7 @@
         </article>
         <article class="card card--gold">
           <span class="label">Instrument model</span>
-          <h3>1 x Ravannne Station, 1 x Djembe Station and 1 x Various instrument station</h3>
+          <h3>Two advanced stations and one support station</h3>
           <p>Provide five ravannes and five djembes. The support station uses five parts selected from maravanne, cajón, sticks and triangle.</p>
         </article>
         <article class="card">
@@ -542,10 +564,66 @@
       <h2>Instrument teaching briefs</h2>
       <p class="lead">Each station uses the same ten-minute arc: identify the instrument, establish safe posture, say and practise the sounds slowly, loop a short pattern, then rehearse the shared cues.</p>
 
-      <details open><summary>Shared foundation with sticks and triangle</summary><div class="details-body"><ul><li>Name the instruments and demonstrate quiet ready position before distribution.</li><li>Establish the two main pulses and groups of three using voice and knee pats.</li><li>Model a simple repeated pattern, alternating leader and group echoes.</li><li>Practise count-in, stop signal and a soft dynamic before music.</li><li>Keep sticks below shoulder height; triangle beaters point down at rest.</li></ul></div></details>
-      <details open><summary>Advanced station — ravanne</summary><div class="details-body"><ol><li><strong>0–1:</strong> identify the central frame drum of Sega Tipik and explain respectful handling.</li><li><strong>1–3:</strong> show supported grip, posture and safe hand position; offer a stand if needed.</li><li><strong>3–5:</strong> demonstrate the one or two sounds required, using shared syllables.</li><li><strong>5–8:</strong> teach a one-bar loop by echo, slowly and then at performance tempo.</li><li><strong>8–10:</strong> practise count-in, four repeats, stop and restart. Never heat animal-skin heads with an open flame in the public area.</li></ol></div></details>
-      <details open><summary>Advanced station — djembe</summary><div class="details-body"><ol><li><strong>0–1:</strong> identify the djembe as an advanced workshop instrument and a supporting adaptation.</li><li><strong>1–3:</strong> show safe posture, stable placement and relaxed hands.</li><li><strong>3–5:</strong> teach only the low and high sound needed, or simplify to one sound.</li><li><strong>5–8:</strong> build the repeated pattern one pulse at a time.</li><li><strong>8–10:</strong> practise count-in, staying beneath ravanne volume, stop and restart.</li></ol></div></details>
-      <details open><summary>Support station — maravanne, cajón, sticks or triangle</summary><div class="details-body"><ol><li><strong>0–1:</strong> name the allocated instrument and its role. Identify maravanne and triangle as traditional; describe cajón and sticks as workshop tools.</li><li><strong>1–3:</strong> demonstrate safe grip or posture and the one required sound or motion.</li><li><strong>3–5:</strong> establish the simplest subdivision or accent using the shared count.</li><li><strong>5–8:</strong> loop for four to eight cycles and practise rejoining after losing the pulse.</li><li><strong>8–10:</strong> practise count-in, playing under the vocal response, stop and restart.</li></ol></div></details>
+      <details open>
+        <summary>Shared foundation with sticks and triangle</summary>
+        <div class="details-body">
+          <ul><li>Name the instruments and demonstrate quiet ready position before distribution.</li><li>Establish the two main pulses and groups of three using voice and knee pats.</li><li>Model a simple repeated pattern, alternating leader and group echoes.</li><li>Practise count-in, stop signal and a soft dynamic before music.</li><li>Keep sticks below shoulder height; triangle beaters point down at rest.</li></ul>
+          <h3>Basic beat videos</h3>
+          <p class="fine-print">Use these short demonstrations as the reference patterns for the shared foundation activity.</p>
+          <div class="video-grid">
+            <article class="video-card">
+              <h4>Sticks — basic beat</h4>
+              <div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/3MoSFdUB-Pk" title="Sticks basic beat demonstration" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+              <a class="video-link" href="https://youtu.be/3MoSFdUB-Pk" target="_blank" rel="noopener noreferrer">Open the sticks video on YouTube ↗</a>
+            </article>
+            <article class="video-card">
+              <h4>Triangle — basic beat</h4>
+              <div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/jGgJj8EAAs4" title="Triangle basic beat demonstration" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+              <a class="video-link" href="https://youtu.be/jGgJj8EAAs4" target="_blank" rel="noopener noreferrer">Open the triangle video on YouTube ↗</a>
+            </article>
+          </div>
+        </div>
+      </details>
+      <details open>
+        <summary>Advanced station — ravanne</summary>
+        <div class="details-body">
+          <ol><li><strong>0–1:</strong> identify the central frame drum of Sega Tipik and explain respectful handling.</li><li><strong>1–3:</strong> show supported grip, posture and safe hand position; offer a stand if needed.</li><li><strong>3–5:</strong> demonstrate the one or two sounds required, using shared syllables.</li><li><strong>5–8:</strong> teach a one-bar loop by echo, slowly and then at performance tempo.</li><li><strong>8–10:</strong> practise count-in, four repeats, stop and restart. Never heat animal-skin heads with an open flame in the public area.</li></ol>
+          <div class="video-grid">
+            <article class="video-card">
+              <h4>Ravanne — basic beat video</h4>
+              <div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/WRSkuBCPI9s" title="Ravanne basic beat demonstration" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+              <a class="video-link" href="https://youtu.be/WRSkuBCPI9s" target="_blank" rel="noopener noreferrer">Open the ravanne video on YouTube ↗</a>
+            </article>
+          </div>
+        </div>
+      </details>
+      <details open>
+        <summary>Advanced station — djembe</summary>
+        <div class="details-body">
+          <ol><li><strong>0–1:</strong> identify the djembe as an advanced workshop instrument and a supporting adaptation.</li><li><strong>1–3:</strong> show safe posture, stable placement and relaxed hands.</li><li><strong>3–5:</strong> teach only the low and high sound needed, or simplify to one sound.</li><li><strong>5–8:</strong> build the repeated pattern one pulse at a time.</li><li><strong>8–10:</strong> practise count-in, staying beneath ravanne volume, stop and restart.</li></ol>
+          <div class="video-grid">
+            <article class="video-card">
+              <h4>Djembe — basic beat video</h4>
+              <div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/puh6HPdERPw" title="Djembe basic beat demonstration" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+              <a class="video-link" href="https://youtu.be/puh6HPdERPw" target="_blank" rel="noopener noreferrer">Open the djembe video on YouTube ↗</a>
+            </article>
+          </div>
+        </div>
+      </details>
+      <details open>
+        <summary>Support station — maravanne, cajón, sticks or triangle</summary>
+        <div class="details-body">
+          <ol><li><strong>0–1:</strong> name the allocated instrument and its role. Identify maravanne and triangle as traditional; describe cajón and sticks as workshop tools.</li><li><strong>1–3:</strong> demonstrate safe grip or posture and the one required sound or motion.</li><li><strong>3–5:</strong> establish the simplest subdivision or accent using the shared count.</li><li><strong>5–8:</strong> loop for four to eight cycles and practise rejoining after losing the pulse.</li><li><strong>8–10:</strong> practise count-in, playing under the vocal response, stop and restart.</li></ol>
+          <div class="video-grid">
+            <article class="video-card">
+              <h4>Maravanne — basic beat video</h4>
+              <div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/kRwgoMuC4cA" title="Maravanne basic beat demonstration" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+              <a class="video-link" href="https://youtu.be/kRwgoMuC4cA" target="_blank" rel="noopener noreferrer">Open the maravanne video on YouTube ↗</a>
+            </article>
+          </div>
+          <p class="fine-print">For sticks or triangle at this station, use the basic beat videos in the shared foundation section above.</p>
+        </div>
+      </details>
 
       <h3>Teaching video specification</h3>
       <p>Record one 60–90 second reference video for each part and one combined ensemble video. Show the instrument name and role, grip from front and side, the pattern slowly with spoken sounds, four clean cycles at performance tempo, and the shared count-in, stop signal and ending.</p>
