@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Reserve a free 30-minute Sega instrument workshop at the Island Flavours Festival on 14 November 2026.">
+  <title>Sega Instrument Workshop | Island Flavours Festival</title>
+  <style>
+    :root {
+      --navy: #082a4a;
+      --teal: #087d80;
+      --coral: #e84b38;
+      --gold: #f5a400;
+      --cream: #fff7e5;
+      --pale-teal: #eaf6f4;
+      --ink: #173044;
+      --muted: #526a78;
+      --line: #c8dcdb;
+      --paper: #f7f3e9;
+      --white: #fff;
+      --shadow: 0 18px 50px rgba(8, 42, 74, .16);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(245, 164, 0, .16), transparent 34rem),
+        linear-gradient(180deg, #fffaf0 0%, var(--paper) 100%);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
+    }
+
+    a { color: inherit; }
+
+    .page {
+      width: min(1120px, calc(100% - 32px));
+      margin: 28px auto;
+      overflow: hidden;
+      border: 1px solid rgba(8, 42, 74, .16);
+      border-radius: 24px;
+      background: rgba(255, 255, 255, .96);
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      position: relative;
+      background: var(--navy);
+    }
+
+    .hero img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1672 / 941;
+      object-fit: cover;
+    }
+
+    .content { padding: 34px; }
+
+    .intro h1 {
+      margin: 0 0 10px;
+      color: var(--navy);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2rem, 5vw, 3.25rem);
+      line-height: 1.04;
+      letter-spacing: -.025em;
+    }
+
+    .intro p {
+      max-width: 900px;
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(1rem, 2vw, 1.13rem);
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 24px;
+      background: var(--pale-teal);
+    }
+
+    .card--journey {
+      border-color: #ead49e;
+      background: var(--cream);
+    }
+
+    .card h2 {
+      margin: 0 0 20px;
+      color: var(--teal);
+      font-size: 1.42rem;
+      line-height: 1.15;
+    }
+
+    .card--journey h2 { color: var(--coral); }
+
+    .card h2::after {
+      content: "";
+      display: block;
+      width: 46px;
+      height: 4px;
+      margin-top: 9px;
+      border-radius: 99px;
+      background: var(--gold);
+    }
+
+    .goals,
+    .journey {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .goals {
+      display: grid;
+      gap: 14px;
+    }
+
+    .goals li {
+      position: relative;
+      padding-left: 23px;
+    }
+
+    .goals li::before {
+      content: "";
+      position: absolute;
+      left: 1px;
+      top: .62em;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--coral);
+    }
+
+    .journey {
+      counter-reset: step;
+      display: grid;
+      gap: 12px;
+    }
+
+    .journey li {
+      position: relative;
+      min-height: 34px;
+      padding-left: 44px;
+    }
+
+    .journey li::before {
+      counter-increment: step;
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: -2px;
+      display: grid;
+      width: 31px;
+      height: 31px;
+      place-items: center;
+      border-radius: 50%;
+      color: var(--white);
+      background: var(--navy);
+      font-size: .8rem;
+      font-weight: 800;
+    }
+
+    .journey strong { color: var(--navy); }
+
+    .reserve {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 180px;
+      gap: 28px;
+      align-items: center;
+      margin-top: 20px;
+      border-radius: 20px;
+      padding: 30px;
+      color: var(--white);
+      background: var(--navy);
+    }
+
+    .reserve h2 {
+      margin: 0;
+      font-size: clamp(1.65rem, 4vw, 2.4rem);
+      line-height: 1.1;
+    }
+
+    .reserve-lead {
+      margin: 8px 0 18px;
+      color: #dcebea;
+    }
+
+    .session-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .session-grid a {
+      display: block;
+      border-radius: 999px;
+      padding: 10px 12px;
+      color: var(--navy);
+      background: var(--gold);
+      text-align: center;
+      text-decoration: none;
+      font-weight: 850;
+      transition: transform .15s ease, filter .15s ease;
+    }
+
+    .session-grid a:hover,
+    .session-grid a:focus-visible {
+      transform: translateY(-2px);
+      filter: brightness(1.05);
+    }
+
+    .quick-facts {
+      margin: 0 0 16px;
+      color: #dcebea;
+      font-size: .82rem;
+      font-weight: 750;
+      letter-spacing: .03em;
+      text-transform: uppercase;
+    }
+
+    .reserve-link {
+      display: block;
+      width: 100%;
+      border-radius: 999px;
+      padding: 12px 16px;
+      overflow-wrap: anywhere;
+      color: var(--navy);
+      background: var(--white);
+      text-align: center;
+      text-decoration: none;
+      font-weight: 850;
+    }
+
+    .expectation {
+      margin: 16px 0 0;
+      color: #dcebea;
+      font-size: .92rem;
+    }
+
+    .qr-card {
+      border-radius: 16px;
+      padding: 14px;
+      color: var(--navy);
+      background: var(--white);
+      text-align: center;
+    }
+
+    .qr-card img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1;
+      object-fit: contain;
+    }
+
+    .qr-card span {
+      display: block;
+      margin-top: 6px;
+      font-size: .75rem;
+      font-weight: 850;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    footer {
+      padding: 0 34px 30px;
+      color: var(--muted);
+      text-align: center;
+      font-size: .82rem;
+    }
+
+    @media (max-width: 760px) {
+      .page {
+        width: min(100% - 18px, 680px);
+        margin: 9px auto;
+        border-radius: 17px;
+      }
+
+      .content { padding: 22px 18px; }
+      .cards { grid-template-columns: 1fr; }
+      .card { padding: 21px; }
+      .reserve { grid-template-columns: 1fr; padding: 24px 19px; }
+      .qr-card { width: min(190px, 65vw); justify-self: center; }
+      footer { padding-inline: 18px; }
+    }
+
+    @media (max-width: 470px) {
+      .session-grid { grid-template-columns: 1fr; }
+      .hero img { min-height: 230px; }
+      .quick-facts { line-height: 1.6; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { scroll-behavior: auto !important; transition: none !important; }
+    }
+
+    @page { size: A4 portrait; margin: 9mm; }
+
+    @media print {
+      body { background: white; }
+      .page {
+        width: 100%;
+        margin: 0;
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+      }
+      .hero img { max-height: 78mm; object-fit: cover; }
+      .content { padding: 6mm 4mm 4mm; }
+      .intro h1 { font-size: 22pt; }
+      .intro p { font-size: 9pt; }
+      .cards { gap: 4mm; margin-top: 5mm; }
+      .card { padding: 5mm; break-inside: avoid; }
+      .card h2 { font-size: 13pt; margin-bottom: 4mm; }
+      .goals, .journey { gap: 2.4mm; font-size: 8.3pt; }
+      .reserve { margin-top: 4mm; padding: 5mm; break-inside: avoid; }
+      .reserve h2 { font-size: 18pt; }
+      .reserve-lead, .expectation { font-size: 8pt; }
+      .session-grid a, .reserve-link { padding-block: 2.2mm; }
+      footer { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <img src="assets/sega-workshop-banner.png" alt="Sega instrument workshop by Tambouguerre at the Island Flavours Festival on 14 November 2026, with sessions at 11.30am, 1.30pm and 3.30pm.">
+    </header>
+
+    <div class="content">
+      <section class="intro" aria-labelledby="page-title">
+        <h1 id="page-title">Feel the Heartbeat of Sega</h1>
+        <p>Experience Mauritian Sega music in a fun, hands-on 30-minute workshop. Learn the shared heartbeat, explore traditional rhythms and perform together as an ensemble. No musical experience or knowledge of Mauritian Creole is required.</p>
+      </section>
+
+      <div class="cards">
+        <section class="card" aria-labelledby="goals-heading">
+          <h2 id="goals-heading">What you'll learn</h2>
+          <ul class="goals">
+            <li>Feel and play the basic Sega rhythm - the Heartbeat of Sega.</li>
+            <li>Build rhythm through body percussion, wooden sticks and vocal calls.</li>
+            <li>Learn a simple ravanne, djembe or supporting-instrument part.</li>
+            <li>Listen for shared cues and play together as a group.</li>
+            <li>Discover Mauritian instruments, music and cultural traditions.</li>
+          </ul>
+        </section>
+
+        <section class="card card--journey" aria-labelledby="journey-heading">
+          <h2 id="journey-heading">Your 30-minute workshop</h2>
+          <ol class="journey">
+            <li><strong>Meet and discover</strong> - Meet the instructors and instruments.</li>
+            <li><strong>Feel the heartbeat</strong> - Use body percussion, thigh pats or claps.</li>
+            <li><strong>Pick up the sticks</strong> - Transfer the heartbeat to rhythm sticks.</li>
+            <li><strong>Sing and respond</strong> - Add an easy vocal call-and-response.</li>
+            <li><strong>Learn your part</strong> - Join a small instrument group.</li>
+            <li><strong>Perform together</strong> - Combine every part for a final performance.</li>
+          </ol>
+        </section>
+      </div>
+
+      <section class="reserve" aria-labelledby="reserve-heading">
+        <div>
+          <h2 id="reserve-heading">Reserve your session time</h2>
+          <p class="reserve-lead">Choose one free 30-minute workshop:</p>
+
+          <div class="session-grid" aria-label="Available workshop times">
+            <a href="https://tinyurl.com/SegaInstrumentWorkshop">11.30am</a>
+            <a href="https://tinyurl.com/SegaInstrumentWorkshop">1.30pm</a>
+            <a href="https://tinyurl.com/SegaInstrumentWorkshop">3.30pm</a>
+          </div>
+
+          <p class="quick-facts">Free | Ages 9+ | 15 places per session | Beginners welcome</p>
+          <a class="reserve-link" href="https://tinyurl.com/SegaInstrumentWorkshop">tinyurl.com/SegaInstrumentWorkshop</a>
+          <p class="expectation">Children under 12 should remain with a responsible adult. Please follow the instructors, observe the stop cues and handle every instrument with care.</p>
+        </div>
+
+        <a class="qr-card" href="https://tinyurl.com/SegaInstrumentWorkshop" aria-label="Scan or select to reserve your Sega instrument workshop session">
+          <img src="assets/registration-qr.png" alt="QR code for the Sega instrument workshop registration page">
+          <span>Scan to reserve</span>
+        </a>
+      </section>
+    </div>
+
+    <footer>Island Flavours Festival · 14 November 2026 · Presented by Tambouguerre</footer>
+  </main>
+</body>
+</html>
